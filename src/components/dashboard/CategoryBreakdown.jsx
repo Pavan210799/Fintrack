@@ -6,7 +6,7 @@ import {
   Cell,
 } from 'recharts';
 
-import { financeTransactions } from '../../data/financeData';
+import { useFinance } from '../../context/FinanceContext';
 import './CategoryBreakdown.css';
 
 const COLORS = {
@@ -19,8 +19,10 @@ const COLORS = {
 };
 
 const CategoryBreakdown = ({ selectedMonth = '2026-08' }) => {
+  const { transactions } = useFinance();
+
   const data = useMemo(() => {
-    const monthExpenses = financeTransactions.filter(
+    const monthExpenses = transactions.filter(
       (t) =>
         t.type === 'expense' &&
         t.date.startsWith(selectedMonth)
@@ -36,11 +38,14 @@ const CategoryBreakdown = ({ selectedMonth = '2026-08' }) => {
     return Object.entries(grouped).map(([name, value]) => ({
       name,
       value,
-      color: COLORS[name],
+      color: COLORS[name] || '#94A3B8',
     }));
-  }, [selectedMonth]);
+  }, [transactions, selectedMonth]);
 
-  const total = data.reduce((sum, item) => sum + item.value, 0);
+  const total = data.reduce(
+    (sum, item) => sum + item.value,
+    0
+  );
 
   const [active, setActive] = useState({
     name: 'Total',
@@ -49,31 +54,40 @@ const CategoryBreakdown = ({ selectedMonth = '2026-08' }) => {
 
   return (
     <div className='category-card'>
-      <h3>Expense by Category</h3>
+      <h3>Expense by category</h3>
 
       <div className='category-chart'>
         <ResponsiveContainer width='100%' height={280}>
-            <PieChart>
-                <Pie
-                data={data}
-                dataKey='value'
-                innerRadius={78}
-                outerRadius={118}
-                paddingAngle={3}
-                stroke='none'
-                onMouseEnter={(_, index) => setActive(data[index])}
-                onMouseLeave={() => setActive({ name: 'Total', value: total })}
-                >
-                {data.map((entry) => (
-                    <Cell key={entry.name} fill={entry.color} />
-                ))}
-                </Pie>
-            </PieChart>
+          <PieChart>
+            <Pie
+              data={data}
+              dataKey='value'
+              innerRadius={78}
+              outerRadius={118}
+              paddingAngle={3}
+              stroke='none'
+              onMouseEnter={(_, index) =>
+                setActive(data[index])
+              }
+              onMouseLeave={() =>
+                setActive({
+                  name: 'Total',
+                  value: total,
+                })
+              }
+            >
+              {data.map((entry) => (
+                <Cell
+                  key={entry.name}
+                  fill={entry.color}
+                />
+              ))}
+            </Pie>
+          </PieChart>
         </ResponsiveContainer>
 
         <div className='category-center'>
           <h4>{active.name}</h4>
-
           <span>
             ₹{active.value.toLocaleString('en-IN')}
           </span>

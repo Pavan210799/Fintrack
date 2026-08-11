@@ -1,13 +1,14 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import DashboardLayout from './layouts/DashboardLayout';
 
 import DashboardPage from './pages/Dashboard/DashboardPage';
 import ExpensesPage from './pages/Expenses/ExpensesPage';
-import BudgetsPage from './pages/Budgets/BudgetsPage';
+import BudgetPage from './pages/Budget/BudgetPage';
 import AnalyticsPage from './pages/Analytics/AnalyticsPage';
-import ReportsPage from './pages/Reports/ReportsPage';
-import SettingsPage from './pages/Settings/SettingsPage';
+import ComparePage from './pages/Compare/ComparePage';
 
 const App = () => {
   return (
@@ -16,12 +17,21 @@ const App = () => {
         <Route element={<DashboardLayout />}>
           <Route path='/' element={<DashboardPage />} />
           <Route path='/expenses' element={<ExpensesPage />} />
-          <Route path='/budgets' element={<BudgetsPage />} />
+          <Route path='/budget' element={<BudgetPage />} />
           <Route path='/analytics' element={<AnalyticsPage />} />
-          <Route path='/reports' element={<ReportsPage />} />
-          <Route path='/settings' element={<SettingsPage />} />
+          <Route path='/compare' element={<ComparePage />} />
         </Route>
       </Routes>
+
+      <ToastContainer
+        position='top-right'
+        autoClose={2500}
+        hideProgressBar={false}
+        newestOnTop
+        closeOnClick
+        pauseOnHover
+        theme='colored'
+      />
     </BrowserRouter>
   );
 };

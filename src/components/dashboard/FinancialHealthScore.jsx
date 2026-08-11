@@ -1,8 +1,10 @@
-import { financeTransactions } from '../../data/financeData';
+import { useFinance } from '../../context/FinanceContext';
 import './FinancialHealthScore.css';
 
 const FinancialHealthScore = ({ selectedMonth }) => {
-  const monthTransactions = financeTransactions.filter((t) =>
+  const { transactions } = useFinance();
+
+  const monthTransactions = transactions.filter((t) =>
     t.date.startsWith(selectedMonth)
   );
 
@@ -31,17 +33,20 @@ const FinancialHealthScore = ({ selectedMonth }) => {
 
   const billsRatio =
     totalExpenses > 0
-      ? ((categoryTotals.Bills || 0) / totalExpenses) * 100
+      ? ((categoryTotals.Bills || 0) / totalExpenses) *
+        100
       : 0;
 
   const foodRatio =
     totalExpenses > 0
-      ? ((categoryTotals.Food || 0) / totalExpenses) * 100
+      ? ((categoryTotals.Food || 0) / totalExpenses) *
+        100
       : 0;
 
   const transportRatio =
     totalExpenses > 0
-      ? ((categoryTotals.Transport || 0) / totalExpenses) *
+      ? ((categoryTotals.Transport || 0) /
+          totalExpenses) *
         100
       : 0;
 
@@ -76,7 +81,9 @@ const FinancialHealthScore = ({ selectedMonth }) => {
     <div className='health-card'>
       <div className='health-header'>
         <h3>Financial health score</h3>
-        <span className='health-badge'>{monthLabel}</span>
+        <span className='health-badge'>
+          {monthLabel}
+        </span>
       </div>
 
       <div className='health-content'>
@@ -164,8 +171,7 @@ const FinancialHealthScore = ({ selectedMonth }) => {
             <p>
               You saved{' '}
               <strong>
-                ₹
-                {savings.toLocaleString('en-IN')}
+                ₹{savings.toLocaleString('en-IN')}
               </strong>{' '}
               this month with{' '}
               <strong>{expenses.length}</strong>{' '}

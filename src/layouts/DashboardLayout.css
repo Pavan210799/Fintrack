@@ -9,11 +9,34 @@
   margin-left: 250px;
   padding: 32px;
   background: var(--bg);
+  transition: margin-left 0.3s ease;
 }
 
+.sidebar-overlay {
+  display: none;
+}
+
+/* Tablet: collapsed icon-only sidebar */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .layout-content {
+    margin-left: 84px;
+    padding: 24px;
+  }
+}
+
+/* Mobile: hamburger drawer */
 @media (max-width: 768px) {
   .layout-content {
     margin-left: 0;
     padding: 20px;
+  }
+
+  .sidebar-overlay {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.45);
+    backdrop-filter: blur(2px);
+    z-index: 999;
   }
 }

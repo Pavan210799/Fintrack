@@ -8,11 +8,13 @@ import {
   Tooltip,
 } from 'recharts';
 
-import { financeTransactions } from '../../data/financeData';
+import { useFinance } from '../../context/FinanceContext';
 import './IncomeExpenseChart.css';
 
 const IncomeExpenseChart = ({ selectedMonth }) => {
-  const monthTransactions = financeTransactions.filter((t) =>
+  const { transactions } = useFinance();
+
+  const monthTransactions = transactions.filter((t) =>
     t.date.startsWith(selectedMonth)
   );
 
@@ -26,15 +28,18 @@ const IncomeExpenseChart = ({ selectedMonth }) => {
     .filter((t) => t.type === 'expense')
     .forEach((transaction) => {
       const day = Number(transaction.date.split('-')[2]);
-      expenseMap[day] = (expenseMap[day] || 0) + transaction.amount;
+      expenseMap[day] =
+        (expenseMap[day] || 0) + transaction.amount;
     });
 
-  const [year, month] = selectedMonth.split('-').map(Number);
+  const [year, month] = selectedMonth
+    .split('-')
+    .map(Number);
 
   const daysInMonth = new Date(year, month, 0).getDate();
 
   const latestTransactionDay =
-    selectedMonth === '2026-08'
+    monthTransactions.length > 0
       ? Math.max(
           ...monthTransactions.map((t) =>
             Number(t.date.split('-')[2])
@@ -43,7 +48,6 @@ const IncomeExpenseChart = ({ selectedMonth }) => {
       : daysInMonth;
 
   const chartData = [];
-
   let cumulativeExpense = 0;
 
   for (let day = 1; day <= latestTransactionDay; day++) {
@@ -59,7 +63,7 @@ const IncomeExpenseChart = ({ selectedMonth }) => {
   return (
     <div className='chart-card'>
       <div className='chart-header'>
-        <h3>Income vs Expenses</h3>
+        <h3>Income vs expenses</h3>
 
         <div className='chart-legend'>
           <span className='legend income'>Income</span>

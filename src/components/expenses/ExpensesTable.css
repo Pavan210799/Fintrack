@@ -1,0 +1,294 @@
+.expenses-table-card {
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: 24px;
+  padding: 24px;
+  box-shadow: var(--shadow-sm);
+}
+
+.expenses-table-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.expenses-table-header h3 {
+  color: var(--text-primary);
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.expenses-table-header span {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.transaction-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.transaction-card-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr 0.9fr 1.1fr 1fr auto;
+  align-items: center;
+  gap: 18px;
+  padding: 18px 20px;
+  background: var(--bg);
+  border: 1px solid var(--card-border);
+  border-radius: 18px;
+  transition: all 0.3s ease;
+}
+
+.transaction-card-row:hover {
+  background: var(--sidebar);
+  border-color: var(--sidebar);
+  transform: translateY(-3px);
+  box-shadow: 0 14px 32px rgba(92, 64, 160, 0.35);
+}
+
+.transaction-main {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.transaction-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.transaction-dot.income {
+  background: var(--income);
+}
+
+.transaction-dot.expense {
+  background: var(--expense);
+}
+
+.transaction-info h4 {
+  color: var(--text-primary);
+  font-size: 0.98rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+  transition: color 0.3s ease;
+}
+
+.transaction-info p {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  transition: color 0.3s ease;
+}
+
+.category-badge {
+  background: rgba(124, 92, 250, 0.12);
+  color: var(--primary);
+  padding: 7px 12px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.type-badge {
+  padding: 7px 12px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: capitalize;
+  transition: all 0.3s ease;
+}
+
+.type-badge.income {
+  background: rgba(34, 197, 94, 0.12);
+  color: var(--income);
+}
+
+.type-badge.expense {
+  background: rgba(249, 115, 22, 0.12);
+  color: var(--expense);
+}
+
+.transaction-payment {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.payment-badge {
+  background: rgba(59, 130, 246, 0.12);
+  color: #2563eb;
+  padding: 7px 12px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.transaction-amount {
+  font-weight: 700;
+  text-align: right;
+  transition: color 0.3s ease;
+}
+
+.transaction-amount.income {
+  color: var(--income);
+}
+
+.transaction-amount.expense {
+  color: var(--expense);
+}
+
+.transaction-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.table-icon-btn {
+  width: 38px;
+  height: 38px;
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  background: var(--card);
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.table-icon-btn:hover {
+  background: var(--sidebar);
+  border-color: var(--sidebar);
+  color: white;
+}
+
+.table-icon-btn.delete:hover {
+  background: var(--danger);
+  border-color: var(--danger);
+}
+
+.transaction-card-row:hover .transaction-info h4,
+.transaction-card-row:hover .transaction-info p,
+.transaction-card-row:hover .transaction-amount {
+  color: white;
+}
+
+.transaction-card-row:hover .category-badge,
+.transaction-card-row:hover .type-badge,
+.transaction-card-row:hover .payment-badge {
+  background: rgba(255, 255, 255, 0.16);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+}
+
+.transaction-card-row:hover .table-icon-btn {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.22);
+  color: white;
+}
+
+.transaction-card-row:hover .table-icon-btn:hover {
+  background: white;
+  color: var(--sidebar);
+}
+
+.transaction-card-row:hover .table-icon-btn.delete:hover {
+  background: var(--danger);
+  color: white;
+}
+
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 28px;
+  padding-top: 20px;
+  border-top: 1px solid var(--card-border);
+}
+
+.page-numbers {
+  display: flex;
+  gap: 10px;
+}
+
+.page-btn {
+  min-width: 42px;
+  height: 42px;
+  padding: 0 14px;
+  border-radius: 12px;
+  border: 1px solid var(--card-border);
+  background: var(--card);
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.page-btn:hover:not(:disabled) {
+  background: var(--sidebar);
+  border-color: var(--sidebar);
+  color: white;
+}
+
+.page-btn.active {
+  background: var(--sidebar);
+  border-color: var(--sidebar);
+  color: white;
+}
+
+.page-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.empty-state {
+  text-align: center;
+  color: var(--text-secondary);
+  padding: 56px 16px;
+}
+
+@media (max-width: 900px) {
+  .transaction-card-row {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .transaction-amount {
+    text-align: left;
+  }
+
+  .transaction-payment {
+    justify-content: flex-start;
+  }
+
+  .transaction-actions {
+    justify-content: flex-end;
+  }
+
+  .pagination {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .page-numbers {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .expenses-table-card {
+    padding: 18px;
+  }
+
+  .transaction-card-row {
+    padding: 16px;
+  }
+}

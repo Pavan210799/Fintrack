@@ -1,0 +1,146 @@
+.budget-insights {
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: 24px;
+  padding: 24px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.budget-section-header h3 {
+  color: var(--text-primary);
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.budget-insights-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.budget-insight-card {
+  background: var(--bg);
+  border: 1px solid var(--card-border);
+  border-radius: 20px;
+  padding: 18px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.budget-insight-card:hover {
+  background: var(--sidebar);
+  border-color: var(--sidebar);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(142, 107, 199, 0.3);
+}
+
+.budget-insight-left {
+  flex-shrink: 0;
+}
+
+.budget-insight-right {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.budget-insight-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+}
+
+.budget-insight-icon.green {
+  background: rgba(34, 197, 94, 0.12);
+  color: var(--income);
+}
+
+.budget-insight-icon.orange {
+  background: rgba(249, 115, 22, 0.12);
+  color: var(--expense);
+}
+
+.budget-insight-icon.purple {
+  background: rgba(124, 92, 250, 0.12);
+  color: var(--primary);
+}
+
+.budget-insight-icon.blue {
+  background: rgba(6, 182, 212, 0.12);
+  color: #06b6d4;
+}
+
+.budget-insight-right h4 {
+  color: var(--text-secondary);
+  font-size: 0.78rem;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.budget-insight-right strong {
+  color: var(--text-primary);
+  font-size: 1.05rem;
+  font-weight: 700;
+  transition: color 0.3s ease;
+}
+
+.budget-insight-right p {
+  color: var(--text-secondary);
+  font-size: 0.78rem;
+  line-height: 1.4;
+  transition: color 0.3s ease;
+}
+
+.budget-insight-card:hover h4,
+.budget-insight-card:hover strong,
+.budget-insight-card:hover p {
+  color: white;
+}
+
+.budget-insight-card:hover .budget-insight-icon {
+  background: rgba(255, 255, 255, 0.16);
+  color: white;
+}
+
+@media (max-width: 1200px) {
+  .budget-insights-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .budget-insights {
+    padding: 20px;
+  }
+
+  .budget-insights-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .budget-insight-card {
+    padding: 18px;
+    gap: 16px;
+  }
+
+  .budget-insight-icon {
+    width: 48px;
+    height: 48px;
+    font-size: 1.2rem;
+  }
+
+  .budget-insight-right strong {
+    font-size: 1.1rem;
+  }
+}

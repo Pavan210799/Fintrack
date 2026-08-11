@@ -1,7 +1,5 @@
 .dashboard-page {
-  margin-left: 250px;
   min-height: 100vh;
-  padding: 32px;
   background: var(--bg);
   display: flex;
   flex-direction: column;
@@ -22,8 +20,8 @@
 
 @media (max-width: 1024px) {
   .dashboard-page {
-    margin-left: 220px;
-    padding: 24px;
+    margin-left: 0;
+    padding: 20px;
   }
 
   .dashboard-chart-grid,
@@ -35,6 +33,12 @@
 @media (max-width: 768px) {
   .dashboard-page {
     margin-left: 0;
-    padding: 20px;
+    padding: 0px;
+    gap: 16px;
+  }
+
+  .dashboard-chart-grid,
+  .dashboard-bottom-grid {
+    gap: 16px;
   }
 }

@@ -1,8 +1,10 @@
-import { financeTransactions } from '../../data/financeData';
+import { useFinance } from '../../context/FinanceContext';
 import './RecentTransactions.css';
 
 const RecentTransactions = ({ selectedMonth = '2026-08' }) => {
-  const transactions = financeTransactions
+  const { transactions } = useFinance();
+
+  const recentTransactions = transactions
     .filter((t) => t.date.startsWith(selectedMonth))
     .sort((a, b) => new Date(b.date) - new Date(a.date))
     .slice(0, 3);
@@ -17,7 +19,7 @@ const RecentTransactions = ({ selectedMonth = '2026-08' }) => {
       </div>
 
       <div className='transactions-list'>
-        {transactions.map((transaction) => (
+        {recentTransactions.map((transaction) => (
           <div
             className='transaction-item'
             key={transaction.id}

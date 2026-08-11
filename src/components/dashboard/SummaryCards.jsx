@@ -5,7 +5,7 @@ import {
   LuPiggyBank,
 } from 'react-icons/lu';
 
-import { financeTransactions } from '../../data/financeData';
+import { useFinance } from '../../context/FinanceContext';
 import './SummaryCards.css';
 
 const formatCurrency = (amount) =>
@@ -14,29 +14,10 @@ const formatCurrency = (amount) =>
 const getPreviousMonth = (month) => {
   const [year, m] = month.split('-').map(Number);
   const date = new Date(year, m - 2, 1);
+
   return `${date.getFullYear()}-${String(
     date.getMonth() + 1
   ).padStart(2, '0')}`;
-};
-
-const calculateMonthData = (month) => {
-  const transactions = financeTransactions.filter((t) =>
-    t.date.startsWith(month)
-  );
-
-  const income = transactions
-    .filter((t) => t.type === 'income')
-    .reduce((sum, t) => sum + t.amount, 0);
-
-  const expenses = transactions
-    .filter((t) => t.type === 'expense')
-    .reduce((sum, t) => sum + t.amount, 0);
-
-  return {
-    income,
-    expenses,
-    savings: income - expenses,
-  };
 };
 
 const getChange = (current, previous) => {
@@ -51,13 +32,35 @@ const getChange = (current, previous) => {
 };
 
 const SummaryCards = ({ selectedMonth }) => {
+  const { transactions } = useFinance();
+
+  const calculateMonthData = (month) => {
+    const monthTransactions = transactions.filter((t) =>
+      t.date.startsWith(month)
+    );
+
+    const income = monthTransactions
+      .filter((t) => t.type === 'income')
+      .reduce((sum, t) => sum + t.amount, 0);
+
+    const expenses = monthTransactions
+      .filter((t) => t.type === 'expense')
+      .reduce((sum, t) => sum + t.amount, 0);
+
+    return {
+      income,
+      expenses,
+      savings: income - expenses,
+    };
+  };
+
   const current = calculateMonthData(selectedMonth);
   const previous = calculateMonthData(
     getPreviousMonth(selectedMonth)
   );
 
   // Running balance up to the selected month
-  const totalBalance = financeTransactions
+  const totalBalance = transactions
     .filter((t) => t.date <= `${selectedMonth}-31`)
     .reduce((balance, t) => {
       return t.type === 'income'

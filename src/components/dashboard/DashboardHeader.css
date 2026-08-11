@@ -3,7 +3,6 @@
   justify-content: space-between;
   align-items: center;
   gap: 24px;
-
   background: var(--header-bg);
   border: 1px solid var(--header-border);
   border-radius: 28px;
@@ -16,6 +15,27 @@
   display: flex;
   align-items: center;
   gap: 24px;
+}
+
+.menu-button {
+  display: none;
+  width: 46px;
+  height: 46px;
+  border-radius: 16px;
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  color: var(--primary);
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.menu-button:hover {
+  background: var(--sidebar);
+  border-color: var(--sidebar);
+  color: #ffffff;
 }
 
 .dashboard-title h1 {
@@ -31,10 +51,11 @@
 }
 
 .dashboard-divider {
-  width: 1px;
+  width: 2px;
   height: 56px;
   background: var(--header-border);
-  margin-left: 28px;
+  margin-left: 24px;
+  flex-shrink: 0;
 }
 
 .dashboard-date {
@@ -61,7 +82,8 @@
   gap: 14px;
 }
 
-.month-selector {
+/* Desktop month selector */
+.desktop-month-selector {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -74,19 +96,19 @@
   cursor: pointer;
 }
 
-.month-selector:hover {
+.desktop-month-selector:hover {
   background: var(--sidebar);
   border-color: var(--sidebar);
   transform: translateY(-3px);
   box-shadow: 0 12px 28px rgba(142, 107, 199, 0.3);
 }
 
-.month-selector:hover select,
-.month-selector:hover .action-icon {
-  color: #FFFFFF;
+.desktop-month-selector:hover select,
+.desktop-month-selector:hover .action-icon {
+  color: #ffffff;
 }
 
-.month-selector select {
+.desktop-month-selector select {
   background: transparent;
   color: var(--text-primary);
   font-size: 0.95rem;
@@ -119,11 +141,10 @@
 .icon-button:hover {
   background: var(--sidebar);
   border-color: var(--sidebar);
-  color: #FFFFFF;
+  color: #ffffff;
   transform: translateY(-3px);
   box-shadow: 0 12px 28px rgba(142, 107, 199, 0.3);
 }
-
 
 .profile-avatar {
   width: 48px;
@@ -145,29 +166,126 @@
   box-shadow: 0 12px 28px rgba(142, 107, 199, 0.35);
 }
 
-@media (max-width: 768px) {
-  .dashboard-header {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 22px;
-  }
+/* Mobile month selector */
+.mobile-month-selector {
+  display: none;
+}
 
-  .dashboard-left {
-    width: 100%;
-  }
-
+/* Tablet */
+@media (max-width: 1024px) {
   .dashboard-divider {
     display: none;
   }
 
-  .dashboard-actions {
-    width: 100%;
-    justify-content: space-between;
-    flex-wrap: wrap;
+  .dashboard-date {
+    display: none;
   }
 
-  .month-selector {
+  .dashboard-header {
+    padding: 22px;
+  }
+
+  .dashboard-title h1 {
+    font-size: 1.8rem;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .dashboard-header {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px;
+    gap: 12px;
+    border-radius: 22px;
+  }
+
+  .dashboard-left {
     flex: 1;
-    min-width: 180px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+  }
+
+  .menu-button {
+    display: flex;
+    flex-shrink: 0;
+    width: 42px;
+    height: 42px;
+    border-radius: 14px;
+  }
+
+  .dashboard-title {
+    min-width: 0;
+  }
+
+  .dashboard-title h1 {
+    font-size: 1.35rem;
+    margin: 0;
+    line-height: 1.2;
+    white-space: nowrap;
+  }
+
+  .dashboard-title p {
+    display: none;
+  }
+
+  .dashboard-divider,
+  .dashboard-date,
+  .desktop-month-selector {
+    display: none;
+  }
+
+  .dashboard-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+
+  .icon-button {
+    width: 42px;
+    height: 42px;
+    border-radius: 14px;
+  }
+
+  .profile-avatar {
+    width: 42px;
+    height: 42px;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+  }
+
+  /* Sticky month selector */
+  .mobile-month-selector {
+    display: block;
+    position: sticky;
+    top: 12px;
+    z-index: 20;
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+
+  .mobile-month-selector .month-selector {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 12px 14px;
+    background: var(--header-bg);
+    border: 1px solid var(--header-border);
+    border-radius: 16px;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .mobile-month-selector .month-selector select {
+    width: 100%;
+    background: transparent;
+    color: var(--text-primary);
+    border: none;
+    outline: none;
+    font-size: 0.95rem;
   }
 }

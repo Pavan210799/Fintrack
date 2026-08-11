@@ -1,18 +1,23 @@
-import { financeTransactions } from '../../data/financeData';
 import {
   LuTrendingUp,
   LuWallet,
   LuReceipt,
   LuCalendar,
 } from 'react-icons/lu';
+
+import { useFinance } from '../../context/FinanceContext';
 import './FinancialInsights.css';
 
 const FinancialInsights = ({ selectedMonth }) => {
-  const monthTransactions = financeTransactions.filter((t) =>
+  const { transactions } = useFinance();
+
+  const monthTransactions = transactions.filter((t) =>
     t.date.startsWith(selectedMonth)
   );
 
-  const expenses = monthTransactions.filter((t) => t.type === 'expense');
+  const expenses = monthTransactions.filter(
+    (t) => t.type === 'expense'
+  );
 
   const income = monthTransactions
     .filter((t) => t.type === 'income')
@@ -59,7 +64,9 @@ const FinancialInsights = ({ selectedMonth }) => {
     <div className='insights-card'>
       <div className='insights-header'>
         <h3>Financial insights</h3>
-        <span className='insights-badge'>{monthLabel}</span>
+        <span className='insights-badge'>
+          {monthLabel}
+        </span>
       </div>
 
       <div className='insights-grid'>
@@ -86,7 +93,9 @@ const FinancialInsights = ({ selectedMonth }) => {
               style={{
                 width: topCategory
                   ? `${Math.min(
-                      (topCategory[1] / totalExpenses) * 100,
+                      (topCategory[1] /
+                        totalExpenses) *
+                        100,
                       100
                     )}%`
                   : '0%',
@@ -115,7 +124,12 @@ const FinancialInsights = ({ selectedMonth }) => {
           <div className='insight-progress'>
             <div
               className='insight-progress-fill green'
-              style={{ width: `${savingsRate}%` }}
+              style={{
+                width: `${Math.max(
+                  0,
+                  Math.min(savingsRate, 100)
+                )}%`,
+              }}
             />
           </div>
         </div>
@@ -129,7 +143,8 @@ const FinancialInsights = ({ selectedMonth }) => {
           </div>
 
           <h4>
-            {highestTransaction?.title || 'No expenses'}
+            {highestTransaction?.title ||
+              'No expenses'}
           </h4>
           <p>
             ₹

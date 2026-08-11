@@ -1,0 +1,289 @@
+.budget-header {
+display: flex;
+justify-content: space-between;
+align-items: center;
+gap: 24px;
+background: var(--header-bg);
+border: 1px solid var(--header-border);
+border-radius: 28px;
+padding: 24px 28px;
+box-shadow: var(--shadow-sm);
+transition: background-color 0.3s ease,
+border-color 0.3s ease;
+}
+
+.budget-left {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.budget-menu-button {
+display: none;
+width: 46px;
+height: 46px;
+border-radius: 16px;
+background: var(--card);
+border: 1px solid var(--card-border);
+color: var(--primary);
+align-items: center;
+justify-content: center;
+box-shadow: var(--shadow-sm);
+transition: all 0.3s ease;
+cursor: pointer;
+}
+
+.budget-menu-button:hover {
+background: var(--sidebar);
+border-color: var(--sidebar);
+color: #ffffff;
+}
+
+.budget-title h1 {
+font-size: 2rem;
+font-weight: 700;
+color: var(--text-primary);
+margin-bottom: 6px;
+}
+
+.budget-title p {
+font-size: 0.95rem;
+color: var(--text-secondary);
+}
+
+.budget-divider {
+  width: 2px;
+  height: 56px;
+  background: var(--header-border);
+  margin-left: 24px;
+  flex-shrink: 0;
+}
+
+.budget-date {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2px;
+  min-width: 140px;
+}
+
+.budget-day {
+font-size: 0.95rem;
+font-weight: 700;
+color: var(--primary);
+}
+
+.budget-date-text {
+font-size: 0.9rem;
+color: var(--text-secondary);
+}
+
+.budget-actions {
+display: flex;
+align-items: center;
+gap: 14px;
+}
+
+.budget-desktop-month-selector {
+display: flex;
+align-items: center;
+gap: 10px;
+background: var(--card);
+border: 1px solid var(--card-border);
+border-radius: 16px;
+padding: 11px 16px;
+box-shadow: var(--shadow-sm);
+transition: all 0.3s ease;
+cursor: pointer;
+}
+
+.budget-desktop-month-selector:hover {
+background: var(--sidebar);
+border-color: var(--sidebar);
+transform: translateY(-3px);
+box-shadow: 0 12px 28px rgba(142, 107, 199, 0.3);
+}
+
+.budget-desktop-month-selector:hover select,
+.budget-desktop-month-selector:hover .budget-action-icon {
+color: #ffffff;
+}
+
+.budget-desktop-month-selector select {
+background: transparent;
+color: var(--text-primary);
+font-size: 0.95rem;
+cursor: pointer;
+border: none;
+outline: none;
+transition: color 0.3s ease;
+}
+
+.budget-action-icon {
+color: var(--primary);
+font-size: 1rem;
+transition: color 0.3s ease;
+}
+
+.budget-icon-button {
+width: 46px;
+height: 46px;
+border-radius: 16px;
+background: var(--card);
+border: 1px solid var(--card-border);
+color: var(--primary);
+display: flex;
+align-items: center;
+justify-content: center;
+box-shadow: var(--shadow-sm);
+transition: all 0.3s ease;
+cursor: pointer;
+}
+
+.budget-icon-button:hover {
+background: var(--sidebar);
+border-color: var(--sidebar);
+color: #ffffff;
+transform: translateY(-3px);
+box-shadow: 0 12px 28px rgba(142, 107, 199, 0.3);
+}
+
+.budget-profile-avatar {
+width: 48px;
+height: 48px;
+border-radius: 50%;
+background: var(--primary);
+color: white;
+display: flex;
+align-items: center;
+justify-content: center;
+font-weight: 600;
+transition: all 0.3s ease;
+cursor: pointer;
+}
+
+.budget-profile-avatar:hover {
+background: var(--sidebar);
+transform: translateY(-3px) scale(1.05);
+box-shadow: 0 12px 28px rgba(142, 107, 199, 0.35);
+}
+
+.budget-mobile-month-selector {
+display: none;
+}
+
+@media (max-width: 1024px) {
+.budget-divider {
+display: none;
+}
+
+.budget-date {
+display: none;
+}
+
+.budget-header {
+padding: 22px;
+}
+
+.budget-title h1 {
+font-size: 1.8rem;
+}
+}
+
+@media (max-width: 768px) {
+.budget-header {
+flex-direction: row;
+align-items: center;
+justify-content: space-between;
+padding: 16px;
+gap: 12px;
+border-radius: 22px;
+}
+
+.budget-left {
+flex: 1;
+display: flex;
+align-items: center;
+gap: 12px;
+min-width: 0;
+}
+
+.budget-menu-button {
+display: flex;
+flex-shrink: 0;
+width: 42px;
+height: 42px;
+border-radius: 14px;
+}
+
+.budget-title {
+min-width: 0;
+}
+
+.budget-title h1 {
+font-size: 1.35rem;
+margin: 0;
+line-height: 1.2;
+white-space: nowrap;
+}
+
+.budget-title p {
+display: none;
+}
+
+.budget-divider,
+.budget-date,
+.budget-desktop-month-selector {
+display: none;
+}
+
+.budget-actions {
+display: flex;
+align-items: center;
+gap: 8px;
+flex-shrink: 0;
+}
+
+.budget-icon-button {
+width: 42px;
+height: 42px;
+border-radius: 14px;
+}
+
+.budget-profile-avatar {
+width: 42px;
+height: 42px;
+font-size: 0.9rem;
+flex-shrink: 0;
+}
+
+.budget-mobile-month-selector {
+display: block;
+position: sticky;
+top: 12px;
+z-index: 20;
+margin-top: 0;
+margin-bottom: 0;
+}
+
+.budget-mobile-month-selector .budget-month-selector {
+display: flex;
+align-items: center;
+gap: 10px;
+width: 100%;
+padding: 12px 14px;
+background: var(--header-bg);
+border: 1px solid var(--header-border);
+border-radius: 16px;
+box-shadow: var(--shadow-sm);
+}
+
+.budget-mobile-month-selector .budget-month-selector select {
+width: 100%;
+background: transparent;
+color: var(--text-primary);
+border: none;
+outline: none;
+font-size: 0.95rem;
+}
+}

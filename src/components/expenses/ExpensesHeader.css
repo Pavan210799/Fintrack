@@ -1,0 +1,245 @@
+.expenses-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  background: var(--header-bg);
+  border: 1px solid var(--header-border);
+  border-radius: 28px;
+  padding: 24px 28px;
+  box-shadow: var(--shadow-sm);
+  transition: background-color 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.expenses-left {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.expenses-menu-button {
+  display: none;
+  width: 46px;
+  height: 46px;
+  border-radius: 16px;
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  color: var(--primary);
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.expenses-menu-button:hover {
+  background: var(--sidebar);
+  border-color: var(--sidebar);
+  color: #ffffff;
+}
+
+.expenses-title h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+}
+
+.expenses-title p {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+}
+
+.expenses-divider {
+  width: 1px;
+  height: 56px;
+  background: var(--header-border);
+  margin-left: 24px;
+}
+
+.expenses-date {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2px;
+}
+
+.expenses-day {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.expenses-date-text {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.expenses-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.add-transaction-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 11px 18px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s ease;
+}
+
+.add-transaction-btn:hover {
+  background: var(--sidebar);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(142, 107, 199, 0.3);
+}
+
+.expenses-icon-button {
+  width: 46px;
+  height: 46px;
+  border-radius: 16px;
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s ease;
+}
+
+.expenses-icon-button:hover {
+  background: var(--sidebar);
+  border-color: var(--sidebar);
+  color: #ffffff;
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(142, 107, 199, 0.3);
+}
+
+.expenses-profile-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--primary);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.expenses-profile-avatar:hover {
+  background: var(--sidebar);
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 12px 28px rgba(142, 107, 199, 0.35);
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .expenses-divider {
+    display: none;
+  }
+
+  .expenses-date {
+    display: none;
+  }
+
+  .expenses-header {
+    padding: 22px;
+  }
+
+  .expenses-title h1 {
+    font-size: 1.8rem;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .expenses-header {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px;
+    gap: 12px;
+    border-radius: 22px;
+  }
+
+  .expenses-left {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+  }
+
+  .expenses-menu-button {
+    display: flex;
+    flex-shrink: 0;
+    width: 42px;
+    height: 42px;
+    border-radius: 14px;
+  }
+
+  .expenses-title {
+    min-width: 0;
+  }
+
+  .expenses-title h1 {
+    font-size: 1.35rem;
+    margin: 0;
+    line-height: 1.2;
+    white-space: nowrap;
+  }
+
+  .expenses-title p {
+    display: none;
+  }
+
+  .expenses-divider,
+  .expenses-date {
+    display: none;
+  }
+
+  .expenses-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+
+  .add-transaction-btn {
+    width: 42px;
+    height: 42px;
+    padding: 0;
+    justify-content: center;
+    border-radius: 14px;
+  }
+
+  .add-transaction-btn span {
+    display: none;
+  }
+
+  .expenses-icon-button {
+    width: 42px;
+    height: 42px;
+    border-radius: 14px;
+  }
+
+  .expenses-profile-avatar {
+    width: 42px;
+    height: 42px;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+  }
+}

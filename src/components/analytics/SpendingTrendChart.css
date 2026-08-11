@@ -1,0 +1,109 @@
+.trend-chart-card {
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: 24px;
+  padding: 24px;
+  box-shadow: var(--shadow-sm);
+}
+
+.trend-chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+.trend-chart-header h3 {
+  color: var(--text-primary);
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.trend-chart-header p {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.trend-chart-legend {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.legend-dot.income {
+  background: var(--income);
+}
+
+.legend-dot.expense {
+  background: var(--expense);
+}
+
+.trend-chart-wrapper {
+  width: 100%;
+  height: 320px;
+}
+
+.recharts-cartesian-grid line {
+  stroke: var(--card-border);
+}
+
+.recharts-tooltip-wrapper {
+  outline: none;
+}
+
+@media (max-width: 768px) {
+  .trend-chart-card {
+    padding: 18px;
+    border-radius: 20px;
+  }
+
+  .trend-chart-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+    margin-bottom: 18px;
+  }
+
+  .trend-chart-header h3 {
+    font-size: 1.1rem;
+  }
+
+  .trend-chart-header p {
+    font-size: 0.84rem;
+  }
+
+  .trend-chart-legend {
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  .legend-item {
+    font-size: 0.8rem;
+  }
+
+  .trend-chart-wrapper {
+    height: 300px;
+    overflow: visible;
+  }
+
+  .recharts-surface {
+    overflow: visible;
+  }
+}
