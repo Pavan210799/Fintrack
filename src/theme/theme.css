@@ -1,0 +1,93 @@
+:root {
+  /* Backgrounds */
+  --bg: #F6F4FF;
+  --sidebar: #2B1E5A;
+  --sidebar-selected: #5A3FB2;
+  --sidebar-hover: #3A2878;
+
+  /* Cards */
+  --card: #FFFFFF;
+  --card-border: #E8E5F5;
+
+  /* Brand */
+  --primary: #7C5CFA;
+  --secondary: #A78BFA;
+
+  /* Text */
+  --text-primary: #1F2340;
+  --text-secondary: #64748B;
+
+  /* Status */
+  --income: #22C55E;
+  --expense: #F97316;
+  --danger: #EF4444;
+  --warning: #F59E0B;
+
+  /* Charts */
+  --chart-grid: #E5E7EB;
+  --chart-income: #7C5CFA;
+  --chart-expense: #F97316;
+
+  /* Shadows */
+  --shadow-sm: 0 4px 12px rgba(142, 107, 199, 0.08);
+  --shadow-md: 0 12px 28px rgba(142, 107, 199, 0.12);
+
+  /* Header */
+  --header-bg: #FFFFFF;
+  --header-border: #E8E5F5;
+
+  /* Sidebar */
+  --sidebar-divider: rgba(255, 255, 255, 0.22);
+
+  /* Theme-aware hover colors */
+  --hover-bg: #2B1E5A;
+  --hover-border: #2B1E5A;
+  --hover-shadow: rgba(142, 107, 199, 0.30);
+}
+
+[data-theme='dark'] {
+  /* Backgrounds */
+  --bg: #070B17;
+  --sidebar: #8E6BC7;
+  --sidebar-selected: #2B1E5A;
+  --sidebar-hover: #9B79D1;
+
+  /* Cards */
+  --card: #0F172A;
+  --card-border: #1E293B;
+
+  /* Brand */
+  --primary: #8B6CFF;
+  --secondary: #B7A5FF;
+
+  /* Text */
+  --text-primary: #F8FAFC;
+  --text-secondary: #94A3B8;
+
+  /* Status */
+  --income: #4ADE80;
+  --expense: #FB923C;
+  --danger: #F87171;
+  --warning: #FBBF24;
+
+  /* Charts */
+  --chart-grid: #243244;
+  --chart-income: #8B6CFF;
+  --chart-expense: #FB923C;
+
+  /* Shadows */
+  --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.25);
+  --shadow-md: 0 12px 32px rgba(0, 0, 0, 0.40);
+
+  /* Header */
+  --header-bg: #0D1425;
+  --header-border: #1F2A44;
+
+  /* Sidebar */
+  --sidebar-divider: rgba(255, 255, 255, 0.28);
+
+  /* Theme-aware hover colors */
+  --hover-bg: #8E6BC7;
+  --hover-border: #8E6BC7;
+  --hover-shadow: rgba(142, 107, 199, 0.35);
+}

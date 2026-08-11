@@ -1,0 +1,173 @@
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+
+  background: var(--header-bg);
+  border: 1px solid var(--header-border);
+  border-radius: 28px;
+  padding: 24px 28px;
+  box-shadow: var(--shadow-sm);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.dashboard-left {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.dashboard-title h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+}
+
+.dashboard-title p {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+}
+
+.dashboard-divider {
+  width: 1px;
+  height: 56px;
+  background: var(--header-border);
+  margin-left: 28px;
+}
+
+.dashboard-date {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2px;
+}
+
+.dashboard-day {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.dashboard-date-text {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.dashboard-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.month-selector {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  padding: 11px 16px;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.month-selector:hover {
+  background: var(--sidebar);
+  border-color: var(--sidebar);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(142, 107, 199, 0.3);
+}
+
+.month-selector:hover select,
+.month-selector:hover .action-icon {
+  color: #FFFFFF;
+}
+
+.month-selector select {
+  background: transparent;
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  transition: color 0.3s ease;
+}
+
+.action-icon {
+  color: var(--primary);
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+
+.icon-button {
+  width: 46px;
+  height: 46px;
+  border-radius: 16px;
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s ease;
+}
+
+.icon-button:hover {
+  background: var(--sidebar);
+  border-color: var(--sidebar);
+  color: #FFFFFF;
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(142, 107, 199, 0.3);
+}
+
+
+.profile-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--primary);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.profile-avatar:hover {
+  background: var(--sidebar);
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 12px 28px rgba(142, 107, 199, 0.35);
+}
+
+@media (max-width: 768px) {
+  .dashboard-header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 22px;
+  }
+
+  .dashboard-left {
+    width: 100%;
+  }
+
+  .dashboard-divider {
+    display: none;
+  }
+
+  .dashboard-actions {
+    width: 100%;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  .month-selector {
+    flex: 1;
+    min-width: 180px;
+  }
+}
