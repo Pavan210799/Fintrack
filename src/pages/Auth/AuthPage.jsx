@@ -308,7 +308,7 @@ const AuthPage = () => {
                     name='firstName'
                     value={signupData.firstName}
                     onChange={handleSignupChange}
-                    placeholder='Pavan'
+                    placeholder=''
                   />
                 </div>
 
@@ -319,7 +319,7 @@ const AuthPage = () => {
                     name='lastName'
                     value={signupData.lastName}
                     onChange={handleSignupChange}
-                    placeholder='Kumar'
+                    placeholder=''
                   />
                 </div>
               </div>
@@ -343,7 +343,7 @@ const AuthPage = () => {
                     name='phone'
                     value={signupData.phone}
                     onChange={handleSignupChange}
-                    placeholder='9876543210'
+                    placeholder=''
                   />
                 </div>
 
@@ -366,7 +366,7 @@ const AuthPage = () => {
                     name='city'
                     value={signupData.city}
                     onChange={handleSignupChange}
-                    placeholder='Visakhapatnam'
+                    placeholder=''
                   />
                 </div>
 
@@ -377,7 +377,7 @@ const AuthPage = () => {
                     name='state'
                     value={signupData.state}
                     onChange={handleSignupChange}
-                    placeholder='Andhra Pradesh'
+                    placeholder=''
                   />
                 </div>
               </div>
@@ -389,7 +389,7 @@ const AuthPage = () => {
                   name='occupation'
                   value={signupData.occupation}
                   onChange={handleSignupChange}
-                  placeholder='Frontend Developer'
+                  placeholder=''
                 />
               </div>
 
