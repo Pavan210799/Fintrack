@@ -1,13 +1,15 @@
 .budget-modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(15, 23, 42, 0.45);
-  backdrop-filter: blur(8px);
+  width: 100vw;
+  height: 100vh;
+  background: rgba(15, 23, 42, 0.55);
+  backdrop-filter: blur(10px);
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 24px;
-  z-index: 1000;
+  z-index: 9999;
 }
 
 .budget-modal {
@@ -16,7 +18,9 @@
   background: var(--card);
   border: 1px solid var(--card-border);
   border-radius: 28px;
-  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.22);
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.35),
+    0 10px 30px rgba(255, 255, 255, 0.04) inset;
   overflow: hidden;
 }
 
@@ -50,12 +54,13 @@
   color: var(--text-primary);
   font-size: 1.25rem;
   font-weight: 700;
-  margin-bottom: 4px;
+  margin: 0 0 4px;
 }
 
 .budget-modal-title p {
   color: var(--text-secondary);
   font-size: 0.9rem;
+  margin: 0;
 }
 
 .budget-modal-close {
@@ -180,7 +185,7 @@
   box-shadow: 0 10px 24px rgba(124, 92, 250, 0.28);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 640px) {
   .budget-modal-overlay {
     padding: 16px;
   }

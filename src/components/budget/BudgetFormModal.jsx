@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { LuX, LuWallet } from 'react-icons/lu';
 import { toast } from 'react-toastify';
 
@@ -19,7 +20,12 @@ const BudgetFormModal = ({
   useEffect(() => {
     if (isOpen) {
       setAmount(String(currentBudget || ''));
+      document.body.style.overflow = 'hidden';
     }
+
+    return () => {
+      document.body.style.overflow = '';
+    };
   }, [isOpen, currentBudget]);
 
   if (!isOpen) return null;
@@ -30,33 +36,30 @@ const BudgetFormModal = ({
     const value = Number(amount);
 
     if (!amount || Number.isNaN(value) || value <= 0) {
-      toast.error(
-        'Please enter a valid budget amount'
-      );
+      toast.error('Please enter a valid budget amount');
       return;
     }
 
     updateBudget(category, value);
-    toast.success(
-      `${category} budget updated successfully`
-    );
+    toast.success(`${category} budget updated successfully`);
     onClose();
   };
 
-  return (
-    <div className='budget-modal-overlay'>
-      <div className='budget-modal'>
+  return createPortal(
+    <div className='budget-modal-overlay' onClick={onClose}>
+      <div
+        className='budget-modal'
+        onClick={(e) => e.stopPropagation()}
+      >
         <div className='budget-modal-header'>
           <div className='budget-modal-title'>
             <div className='budget-modal-icon'>
               <LuWallet />
             </div>
+
             <div>
               <h3>Edit budget</h3>
-              <p>
-                Update the monthly budget for{' '}
-                {category}
-              </p>
+              <p>Update the monthly budget for {category}</p>
             </div>
           </div>
 
@@ -71,6 +74,7 @@ const BudgetFormModal = ({
         <form onSubmit={handleSubmit}>
           <div className='budget-form-group'>
             <label>Category</label>
+
             <div className='budget-readonly-field'>
               {category}
             </div>
@@ -80,24 +84,20 @@ const BudgetFormModal = ({
             <label>Monthly budget</label>
 
             <div className='budget-input-wrapper'>
-              <span className='budget-currency'>
-                ₹
-              </span>
+              <span className='budget-currency'>₹</span>
 
               <input
                 type='number'
                 min='1'
                 value={amount}
-                onChange={(e) =>
-                  setAmount(e.target.value)
-                }
+                onChange={(e) => setAmount(e.target.value)}
                 placeholder='Enter budget amount'
+                autoFocus
               />
             </div>
 
             <small>
-              Set the monthly spending limit for this
-              category.
+              Set the monthly spending limit for this category.
             </small>
           </div>
 
@@ -119,7 +119,8 @@ const BudgetFormModal = ({
           </div>
         </form>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 };
 

@@ -1,8 +1,10 @@
 import { useFinance } from '../../context/FinanceContext';
+import { useNavigate } from 'react-router-dom';
 import './RecentTransactions.css';
 
 const RecentTransactions = ({ selectedMonth = '2026-08' }) => {
   const { transactions } = useFinance();
+  const navigate = useNavigate();
 
   const recentTransactions = transactions
     .filter((t) => t.date.startsWith(selectedMonth))
@@ -13,7 +15,10 @@ const RecentTransactions = ({ selectedMonth = '2026-08' }) => {
     <div className='transactions-card'>
       <div className='transactions-header'>
         <h3>Recent transactions</h3>
-        <button className='transactions-button'>
+        <button
+          className='transactions-button'
+          onClick={() => navigate('/expenses')}
+        >
           View all
         </button>
       </div>
