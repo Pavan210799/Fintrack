@@ -149,23 +149,29 @@ box-shadow: 0 12px 28px rgba(142, 107, 199, 0.3);
 }
 
 .budget-profile-avatar {
-width: 48px;
-height: 48px;
-border-radius: 50%;
-background: var(--primary);
-color: white;
-display: flex;
-align-items: center;
-justify-content: center;
-font-weight: 600;
-transition: all 0.3s ease;
-cursor: pointer;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: none;
+  background: linear-gradient(
+    135deg,
+    var(--primary),
+    var(--secondary)
+  );
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow-sm);
 }
 
 .budget-profile-avatar:hover {
-background: var(--sidebar);
-transform: translateY(-3px) scale(1.05);
-box-shadow: 0 12px 28px rgba(142, 107, 199, 0.35);
+  background: var(--sidebar);
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 12px 28px rgba(142, 107, 199, 0.35);
 }
 
 .budget-mobile-month-selector {
@@ -286,4 +292,26 @@ border: none;
 outline: none;
 font-size: 0.95rem;
 }
+}
+
+.notification-button {
+  position: relative;
+}
+
+.notification-badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: 999px;
+  background: #ef4444;
+  color: white;
+  font-size: 0.65rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--card);
 }

@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useOutletContext } from 'react-router-dom';
 
 import { useFinance } from '../../context/FinanceContext';
@@ -8,6 +8,9 @@ import ExpensesHeader from '../../components/expenses/ExpensesHeader';
 import ExpensesFilters from '../../components/expenses/ExpensesFilters';
 import ExpensesTable from '../../components/expenses/ExpensesTable';
 import ExpenseFormModal from '../../components/expenses/ExpenseFormModal';
+
+import PageTransition from '../../components/common/PageTransition';
+import PageSkeleton from '../../components/common/PageSkeleton';
 
 import './ExpensesPage.css';
 
@@ -23,6 +26,15 @@ const ExpensesPage = () => {
   const [search, setSearch] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingTransaction, setEditingTransaction] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 600);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   const filteredTransactions = useMemo(() => {
     return transactions
@@ -70,25 +82,31 @@ const ExpensesPage = () => {
           setIsModalOpen(true);
         }}
       />
+    
+      {loading ? (
+        <PageSkeleton />
+      ) : (
+        <PageTransition>
+          <ExpensesFilters
+            selectedMonth={selectedMonth}
+            setSelectedMonth={setSelectedMonth}
+            categoryFilter={categoryFilter}
+            setCategoryFilter={setCategoryFilter}
+            paymentMethod={paymentMethod}
+            setPaymentMethod={setPaymentMethod}
+            search={search}
+            setSearch={setSearch}
+          />
 
-      <ExpensesFilters
-        selectedMonth={selectedMonth}
-        setSelectedMonth={setSelectedMonth}
-        categoryFilter={categoryFilter}
-        setCategoryFilter={setCategoryFilter}
-        paymentMethod={paymentMethod}
-        setPaymentMethod={setPaymentMethod}
-        search={search}
-        setSearch={setSearch}
-      />
-
-      <ExpensesTable
-        transactions={filteredTransactions}
-        onEditTransaction={(transaction) => {
-          setEditingTransaction(transaction);
-          setIsModalOpen(true);
-        }}
-      />
+          <ExpensesTable
+            transactions={filteredTransactions}
+            onEditTransaction={(transaction) => {
+              setEditingTransaction(transaction);
+              setIsModalOpen(true);
+            }}
+          />
+        </PageTransition>
+      )}
 
       <ExpenseFormModal
         isOpen={isModalOpen}

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useOutletContext } from 'react-router-dom';
 
 import DashboardHeader from '../../components/dashboard/DashboardHeader';
@@ -9,17 +9,28 @@ import FinancialInsights from '../../components/dashboard/FinancialInsights';
 import RecentTransactions from '../../components/dashboard/RecentTransactions';
 import FinancialHealthScore from '../../components/dashboard/FinancialHealthScore';
 
+import PageSkeleton from '../../components/common/PageSkeleton';
+
 import { useTheme } from '../../context/ThemeContext';
+import PageTransition from '../../components/common/PageTransition';
 
 import './DashboardPage.css';
 
 const DashboardPage = () => {
   const { openSidebar } = useOutletContext();
 
-  const [selectedMonth, setSelectedMonth] =
-    useState('2026-08');
+  const [selectedMonth, setSelectedMonth] = useState('2026-08');
+  const [loading, setLoading] = useState(true);
 
   const { theme, toggleTheme } = useTheme();
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 600);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <div className='dashboard-page'>
@@ -30,20 +41,28 @@ const DashboardPage = () => {
         toggleTheme={toggleTheme}
         openSidebar={openSidebar}
       />
+      {loading ? (
+        <PageSkeleton />
+      ) : (
 
-      <SummaryCards selectedMonth={selectedMonth} />
+        <PageTransition>
+          <div className='dashboard-page'>
+          <SummaryCards selectedMonth={selectedMonth} />
 
-      <div className='dashboard-chart-grid'>
-        <IncomeExpenseChart selectedMonth={selectedMonth} />
-        <CategoryBreakdown selectedMonth={selectedMonth} />
-      </div>
+          <div className='dashboard-chart-grid'>
+            <IncomeExpenseChart selectedMonth={selectedMonth} />
+            <CategoryBreakdown selectedMonth={selectedMonth} />
+          </div>
 
-      <div className='dashboard-bottom-grid'>
-        <FinancialInsights selectedMonth={selectedMonth} />
-        <RecentTransactions selectedMonth={selectedMonth} />
-      </div>
+          <div className='dashboard-bottom-grid'>
+            <FinancialInsights selectedMonth={selectedMonth} />
+            <RecentTransactions selectedMonth={selectedMonth} />
+          </div>
 
-      <FinancialHealthScore selectedMonth={selectedMonth} />
+          <FinancialHealthScore selectedMonth={selectedMonth} />
+        </div>
+        </PageTransition>
+      )}
     </div>
   );
 };

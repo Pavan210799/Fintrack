@@ -5,6 +5,10 @@ import {
   LuPlus,
   LuMenu,
 } from 'react-icons/lu';
+import { useNavigate } from 'react-router-dom';
+
+import { useNotifications } from '../../context/NotificationContext';
+import { useAuth } from '../../context/AuthContext';
 
 import './ExpensesHeader.css';
 
@@ -14,6 +18,13 @@ const ExpensesHeader = ({
   openSidebar,
   onAddTransaction,
 }) => {
+  const navigate = useNavigate();
+
+  const { openNotifications, unreadCount } =
+    useNotifications();
+
+  const { currentUser } = useAuth();
+
   const today = new Date();
 
   const day = today.toLocaleDateString('en-US', {
@@ -25,6 +36,12 @@ const ExpensesHeader = ({
     month: 'long',
     year: 'numeric',
   });
+
+  const { user } = useAuth();
+
+  const avatarLetter = (
+    user?.firstName?.charAt(0) || 'U'
+  ).toUpperCase();
 
   return (
     <header className='expenses-header'>
@@ -71,13 +88,28 @@ const ExpensesHeader = ({
           {theme === 'light' ? <LuMoon /> : <LuSun />}
         </button>
 
-        <button className='expenses-icon-button'>
+        <button
+          className='expenses-icon-button notification-button'
+          onClick={openNotifications}
+          aria-label='Open notifications'
+        >
           <LuBell />
+          {unreadCount > 0 && (
+            <span className='notification-badge'>
+              {unreadCount > 9
+                ? '9+'
+                : unreadCount}
+            </span>
+          )}
         </button>
 
-        <div className='expenses-profile-avatar'>
-          <span>PK</span>
-        </div>
+        <button
+          className='expenses-profile-avatar'
+          onClick={() => navigate('/profile')}
+          aria-label='Open profile'
+        >
+          <span>{avatarLetter}</span>
+        </button>
       </div>
     </header>
   );

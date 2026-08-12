@@ -5,6 +5,10 @@ import {
   LuCalendar,
   LuMenu,
 } from 'react-icons/lu';
+import { useNavigate } from 'react-router-dom';
+
+import { useNotifications } from '../../context/NotificationContext';
+import { useAuth } from '../../context/AuthContext';
 
 import './AnalyticsHeader.css';
 
@@ -15,6 +19,13 @@ const AnalyticsHeader = ({
   toggleTheme,
   openSidebar,
 }) => {
+  const navigate = useNavigate();
+
+  const { openNotifications, unreadCount } =
+    useNotifications();
+
+  const { currentUser } = useAuth();
+
   const today = new Date();
 
   const day = today.toLocaleDateString('en-US', {
@@ -26,6 +37,12 @@ const AnalyticsHeader = ({
     month: 'long',
     year: 'numeric',
   });
+
+  const { user } = useAuth();
+
+  const avatarLetter = (
+    user?.firstName?.charAt(0) || 'U'
+  ).toUpperCase();
 
   return (
     <>
@@ -42,7 +59,8 @@ const AnalyticsHeader = ({
           <div className='analytics-title'>
             <h1>Analytics</h1>
             <p>
-              Explore spending trends, income patterns, and financial insights.
+              Explore spending trends, income patterns,
+              and financial insights.
             </p>
           </div>
 
@@ -50,7 +68,9 @@ const AnalyticsHeader = ({
 
           <div className='analytics-date'>
             <span className='analytics-day'>{day}</span>
-            <span className='analytics-date-text'>{date}</span>
+            <span className='analytics-date-text'>
+              {date}
+            </span>
           </div>
         </div>
 
@@ -60,14 +80,28 @@ const AnalyticsHeader = ({
 
             <select
               value={selectedMonth}
-              onChange={(e) => setSelectedMonth(e.target.value)}
+              onChange={(e) =>
+                setSelectedMonth(e.target.value)
+              }
             >
-              <option value='2026-08'>August 2026</option>
-              <option value='2026-07'>July 2026</option>
-              <option value='2026-06'>June 2026</option>
-              <option value='2026-05'>May 2026</option>
-              <option value='2026-04'>April 2026</option>
-              <option value='2026-03'>March 2026</option>
+              <option value='2026-08'>
+                August 2026
+              </option>
+              <option value='2026-07'>
+                July 2026
+              </option>
+              <option value='2026-06'>
+                June 2026
+              </option>
+              <option value='2026-05'>
+                May 2026
+              </option>
+              <option value='2026-04'>
+                April 2026
+              </option>
+              <option value='2026-03'>
+                March 2026
+              </option>
             </select>
           </div>
 
@@ -76,16 +110,35 @@ const AnalyticsHeader = ({
             onClick={toggleTheme}
             aria-label='Toggle theme'
           >
-            {theme === 'light' ? <LuMoon /> : <LuSun />}
+            {theme === 'light' ? (
+              <LuMoon />
+            ) : (
+              <LuSun />
+            )}
           </button>
 
-          <button className='analytics-icon-button'>
+          <button
+            className='analytics-icon-button notification-button'
+            onClick={openNotifications}
+            aria-label='Open notifications'
+          >
             <LuBell />
+            {unreadCount > 0 && (
+              <span className='notification-badge'>
+                {unreadCount > 9
+                  ? '9+'
+                  : unreadCount}
+              </span>
+            )}
           </button>
 
-          <div className='analytics-profile-avatar'>
-            <span>PK</span>
-          </div>
+          <button
+            className='analytics-profile-avatar'
+            onClick={() => navigate('/profile')}
+            aria-label='Open profile'
+          >
+            <span>{avatarLetter}</span>
+          </button>
         </div>
       </header>
 
@@ -95,14 +148,28 @@ const AnalyticsHeader = ({
 
           <select
             value={selectedMonth}
-            onChange={(e) => setSelectedMonth(e.target.value)}
+            onChange={(e) =>
+              setSelectedMonth(e.target.value)
+            }
           >
-            <option value='2026-08'>August 2026</option>
-            <option value='2026-07'>July 2026</option>
-            <option value='2026-06'>June 2026</option>
-            <option value='2026-05'>May 2026</option>
-            <option value='2026-04'>April 2026</option>
-            <option value='2026-03'>March 2026</option>
+            <option value='2026-08'>
+              August 2026
+            </option>
+            <option value='2026-07'>
+              July 2026
+            </option>
+            <option value='2026-06'>
+              June 2026
+            </option>
+            <option value='2026-05'>
+              May 2026
+            </option>
+            <option value='2026-04'>
+              April 2026
+            </option>
+            <option value='2026-03'>
+              March 2026
+            </option>
           </select>
         </div>
       </div>

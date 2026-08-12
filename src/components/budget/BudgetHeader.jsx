@@ -5,6 +5,10 @@ import {
   LuCalendar,
   LuMenu,
 } from 'react-icons/lu';
+import { useNavigate } from 'react-router-dom';
+
+import { useNotifications } from '../../context/NotificationContext';
+import { useAuth } from '../../context/AuthContext';
 
 import './BudgetHeader.css';
 
@@ -15,6 +19,13 @@ const BudgetHeader = ({
   toggleTheme,
   openSidebar,
 }) => {
+  const navigate = useNavigate();
+
+  const { openNotifications, unreadCount } =
+    useNotifications();
+
+  const { currentUser } = useAuth();
+
   const today = new Date();
 
   const day = today.toLocaleDateString('en-US', {
@@ -26,6 +37,12 @@ const BudgetHeader = ({
     month: 'long',
     year: 'numeric',
   });
+
+  const { user } = useAuth();
+
+  const avatarLetter = (
+    user?.firstName?.charAt(0) || 'U'
+  ).toUpperCase();
 
   return (
     <>
@@ -42,7 +59,8 @@ const BudgetHeader = ({
           <div className='budget-title'>
             <h1>Budget</h1>
             <p>
-              Set monthly budgets and track spending across categories.
+              Set monthly budgets and track spending across
+              categories.
             </p>
           </div>
 
@@ -50,7 +68,9 @@ const BudgetHeader = ({
 
           <div className='budget-date'>
             <span className='budget-day'>{day}</span>
-            <span className='budget-date-text'>{date}</span>
+            <span className='budget-date-text'>
+              {date}
+            </span>
           </div>
         </div>
 
@@ -97,19 +117,36 @@ const BudgetHeader = ({
             )}
           </button>
 
-          <button className='budget-icon-button'>
+          <button
+            className='budget-icon-button notification-button'
+            onClick={openNotifications}
+            aria-label='Open notifications'
+          >
             <LuBell />
+
+            {unreadCount > 0 && (
+              <span className='notification-badge'>
+                {unreadCount > 9
+                  ? '9+'
+                  : unreadCount}
+              </span>
+            )}
           </button>
 
-          <div className='budget-profile-avatar'>
-            <span>PK</span>
-          </div>
+          <button
+            className='budget-profile-avatar'
+            onClick={() => navigate('/profile')}
+            aria-label='Open profile'
+          >
+            <span>{avatarLetter}</span>
+          </button>
         </div>
       </header>
 
       <div className='budget-mobile-month-selector'>
         <div className='budget-month-selector'>
           <LuCalendar className='budget-action-icon' />
+
           <select
             value={selectedMonth}
             onChange={(e) =>

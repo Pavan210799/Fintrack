@@ -4,6 +4,10 @@ import {
   LuSun,
   LuMenu,
 } from 'react-icons/lu';
+import { useNavigate } from 'react-router-dom';
+
+import { useNotifications } from '../../context/NotificationContext';
+import { useAuth } from '../../context/AuthContext';
 
 import './CompareHeader.css';
 
@@ -12,6 +16,13 @@ const CompareHeader = ({
   toggleTheme,
   openSidebar,
 }) => {
+  const navigate = useNavigate();
+
+  const { openNotifications, unreadCount } =
+    useNotifications();
+
+  const { currentUser } = useAuth();
+
   const today = new Date();
 
   const day = today.toLocaleDateString('en-US', {
@@ -23,6 +34,12 @@ const CompareHeader = ({
     month: 'long',
     year: 'numeric',
   });
+
+  const { user } = useAuth();
+
+  const avatarLetter = (
+    user?.firstName?.charAt(0) || 'U'
+  ).toUpperCase();
 
   return (
     <header className='compare-page-header'>
@@ -38,7 +55,8 @@ const CompareHeader = ({
         <div className='compare-header-title'>
           <h1>Compare</h1>
           <p>
-            Compare financial performance between two months.
+            Compare financial performance between two
+            months.
           </p>
         </div>
 
@@ -46,7 +64,9 @@ const CompareHeader = ({
 
         <div className='compare-header-date'>
           <span className='compare-header-day'>{day}</span>
-          <span className='compare-header-date-text'>{date}</span>
+          <span className='compare-header-date-text'>
+            {date}
+          </span>
         </div>
       </div>
 
@@ -60,15 +80,27 @@ const CompareHeader = ({
         </button>
 
         <button
-          className='compare-header-icon-button'
-          aria-label='Notifications'
+          className='compare-header-icon-button notification-button'
+          onClick={openNotifications}
+          aria-label='Open notifications'
         >
           <LuBell />
+          {unreadCount > 0 && (
+            <span className='notification-badge'>
+              {unreadCount > 9
+                ? '9+'
+                : unreadCount}
+            </span>
+          )}
         </button>
 
-        <div className='compare-header-profile-avatar'>
-          <span>PK</span>
-        </div>
+        <button
+          className='compare-header-profile-avatar'
+          onClick={() => navigate('/profile')}
+          aria-label='Open profile'
+        >
+          <span>{avatarLetter}</span>
+        </button>
       </div>
     </header>
   );
